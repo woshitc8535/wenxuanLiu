@@ -1,0 +1,54 @@
+import pygame, sys
+from pygame.locals import *
+import time
+
+# create class
+class Player(object):
+    # initialize
+    def __init__(self):
+        self.bulletList = []
+        player_image = r'C:\Users\woshi\PycharmProjects\untitled1\pygame\project\pikachu.jpg'
+        self.image = pygame.image.load(player_image).convert()
+
+        self.x = 200
+        self.y = 600
+
+        self.speed = 5
+        self.playerName = 'player'
+
+    def draw(self, screen):
+        screen.blit(self.image, (self.x, self.y))
+
+
+
+if __name__ == '__main__':
+
+    white = 255,255,255
+    black = 0,0,0
+
+
+    pygame.init()
+    screen = pygame.display.set_mode((1000, 716))
+    myfront = pygame.font.Font(None,60)
+    bgImaeFile = r'C:\Users\woshi\PycharmProjects\untitled1\pygame\project\Lusg.gif'
+    background = pygame.image.load(bgImaeFile).convert()
+    textImage = myfront.render("Welcome to the Pokemon world", True, black)
+
+    while True:
+        for event in pygame.event.get():
+            if event.type ==QUIT:
+                sys.exit()
+            elif event.type == KEYDOWN:
+                if event.key== K_a or event.key == K_LEFT:
+                    print('left')
+                elif event.key == K_d or event.key ==K_RIGHT:
+                    print('right')
+                elif event.key == K_SPACE:
+                    print('space')
+        screen.blit(background,(0,0))
+        screen.blit(textImage, (200, 300))
+        player = Player()
+        pygame.display.update()
+
+        time.sleep(0.02)
+
